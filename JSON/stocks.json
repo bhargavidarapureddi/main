@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Company A",
+        "ticker_symbol": "ABC",
+        "share_price": 100
+    },
+    {
+        "name": "Company B",
+        "ticker_symbol": "XYZ",
+        "share_price": 150
+    }
+]

@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+{% extends 'base.html' %} 
+{% block body_block %} 
+{% load cust_filters %}
+<h1>Employee Information Dash Board</h1><hr> 
+<table border='2'> 
+<style>
+/* CSS for table styling */
+th, td {
+border: 2px solid black; /* Adds a solid black border around each table cell */
+padding: 8px; /* Adds padding inside each table cell */
+}
+</style>
+<thead> 
+<th>Employee Number</th>
+<th>Employee Name</th> 
+<th>Employee Salary</th> 
+<th>Employee Address</th> 
+<th>Actions</th> 
+</thead> 
+{% for emp in employees %} 
+<tr>
+    <td>{{emp.eno}}</td> 
+<td>{{emp.ename}}</td> 
+<td>{{emp.esal|doll}}</td> 
+<td>{{emp.eaddr}}</td> 
+<td> 
+<a href="/update/{{emp.id}}">Update</a> 
+<a href="/delete/{{emp.id}}">Delete</a> 
+</td> 
+</tr> 
+{%endfor%} 
+</table><br><br><br> 
+<a href="/insert" class='btn btn-primary btn-lg'> 
+Do You Want to Insert New Employee</a> 
+{% endblock %}

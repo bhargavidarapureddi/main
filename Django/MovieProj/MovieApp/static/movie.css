@@ -1,0 +1,28 @@
+body{ 
+    background: url(); 
+    /* background-repeat: no-repeat;
+     background-size: cover; */ 
+    } 
+    .container .jumbotron{ 
+    margin-top:200px; 
+    background: violet; 
+    color:white; 
+    font-family: 'Merriweather', serif; 
+    } 
+    table,tr,td,thead,th{ 
+    border:2px solid skyblue; 
+    font-size: 30px; 
+    color:white; 
+    background: darkmagenta; 
+    margin:auto; 
+    } 
+    thead,th{ 
+    border:2px solid skyblue; 
+    font-size: 30px; 
+    color: wheat; 
+    margin:auto; 
+    background:mediumvioletred; 
+    } 
+    h1{ 
+    text-align: center; 
+    }

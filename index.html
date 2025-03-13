@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="flex justify-center items-center h-screen bg-gray-100">
+        <div class="bg-white shadow-lg rounded-lg p-6 w-3/4 flex flex-row">
+            
+            <!-- Upload Section -->
+            <div class="w-1/2 pr-6 border-r border-gray-300">
+                <h2 class="text-xl font-semibold text-green-600">Upload Files</h2>
+                <p class="text-gray-500 mb-4">Upload documents you want to share with your team</p>
+                
+                <div class="border-2 border-dashed border-green-300 p-10 text-center rounded-md" id="drop-zone">
+                    <i class="fas fa-upload text-green-500 text-3xl mb-2"></i>
+                    <p class="text-gray-500">Drag and drop files here</p>
+                    <p class="text-gray-500 my-2">- OR -</p>
+                    <input type="file" id="file-input" class="hidden" multiple>
+                    <button onclick="document.getElementById('file-input').click()" class="bg-green-500 text-white px-4 py-2 rounded-md">Browse Files</button>
+                </div>
+            </div>
+
+            <!-- Uploaded Files Section -->
+            <div class="w-1/2 pl-6">
+                <h3 class="text-lg font-semibold">Uploaded Files</h3>
+                <div id="uploaded-files" class="mt-4 bg-gray-200 p-2 rounded-md max-h-64 overflow-y-auto">
+                    <p class="text-gray-500">No files uploaded yet</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const dropZone = document.getElementById('drop-zone');
+        const uploadedFilesContainer = document.getElementById('uploaded-files');
+
+        fileInput.addEventListener('change', handleFiles);
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-green-600');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('border-green-600');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-green-600');
+            handleFiles(e.dataTransfer);
+        });
+
+        function handleFiles(event) {
+            const files = event.files || event.target.files;
+            if (uploadedFilesContainer.querySelector('p.text-gray-500')) {
+                uploadedFilesContainer.innerHTML = '';
+            }
+
+            for (const file of files) {
+                let icon;
+                if (file.type.includes('pdf')) {
+                    icon = '<i class="fas fa-file-pdf text-red-500 text-xl"></i>';
+                } else if (file.type.includes('image')) {
+                    icon = '<i class="fas fa-file-image text-blue-500 text-xl"></i>';
+                } else if (file.type.includes('word')) {
+                    icon = '<i class="fas fa-file-word text-blue-600 text-xl"></i>';
+                } else if (file.type.includes('excel')) {
+                    icon = '<i class="fas fa-file-excel text-green-500 text-xl"></i>';
+                } else if (file.type.includes('zip')) {
+                    icon = '<i class="fas fa-file-archive text-yellow-500 text-xl"></i>';
+                } else {
+                    icon = '<i class="fas fa-file text-gray-500 text-xl"></i>';
+                }
+
+                const fileElement = document.createElement('div');
+                fileElement.innerHTML = `${icon} <span class="ml-2">${file.name}</span>`;
+                fileElement.classList.add('flex', 'items-center', 'text-gray-700', 'bg-white', 'p-2', 'rounded-md', 'shadow-sm', 'mb-2');
+                uploadedFilesContainer.appendChild(fileElement);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>EmployeeDB</title>
+</head>
+<body>
+{% if emplist %}
+<table border="2px">
+    <tr><th>empno</th><th>ename</th><th>esal</th><th>eaddr</th></tr>
+
+    <tr>
+        {% for emp in emplist %}
+        <td>{{emp.empno}}</td>
+        <td>{{emp.ename}}</td>
+        <td>{{emp.esal}}</td>
+        <td>{{emp.eaddr}}</td><br>
+        
+    </tr>
+    {% endfor %}
+</table>
+ {% else %}
+ <pl> No Record found </pl>
+ {% endif %}
+</body>
+</html>

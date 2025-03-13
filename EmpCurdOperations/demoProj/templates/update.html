@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form  action="/update/{{dt[0]}}" method='POST'>
+    <label>Employee No</label>
+    <input type="text" name="eno" placeholder="Enter the eno"  value="{{dt[0]}}"> <br>
+
+    <label>Employee Name</label>
+    <input type="text" name="ename" placeholder="Enter the ename" value="{{dt[1]}}"> <br>
+
+      <label>Employee Salary</label>
+    <input type="text" name="esal" placeholder="Enter the Sal" value="{{dt[2]}}"> <br>
+
+    <input type="submit" value="update">
+
+</form>
+
+</body>
+</html>
